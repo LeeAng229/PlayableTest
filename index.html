@@ -3,114 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的游戏合集 - GitHub Pages</title>
+    <title>我的游戏大厅</title>
     <style>
-        :root {
-            --primary-color: #2da44e; /* GitHub 风格绿色 */
-            --bg-color: #f6f8fa;
-            --card-bg: #ffffff;
-            --text-color: #24292f;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        header {
-            margin: 40px 0;
-            text-align: center;
-        }
-
-        .container {
+        /* 继承之前的样式并稍作优化 */
+        :root { --primary: #0969da; --bg: #f6f8fa; }
+        body { font-family: sans-serif; background: var(--bg); margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+        header { text-align: center; margin-bottom: 30px; }
+        
+        #game-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 20px;
-            width: 90%;
-            max-width: 1000px;
+            width: 100%;
+            max-width: 900px;
         }
 
-        .game-card {
-            background: var(--card-bg);
+        .card {
+            background: white;
             border: 1px solid #d0d7de;
-            border-radius: 6px;
-            padding: 20px;
-            text-decoration: none;
-            color: inherit;
-            transition: transform 0.2s, box-shadow 0.2s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .game-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 24px rgba(140,149,159,0.2);
-            border-color: var(--primary-color);
-        }
-
-        .game-icon {
-            font-size: 40px;
-            margin-bottom: 15px;
-        }
-
-        .game-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .game-desc {
-            font-size: 0.9rem;
-            color: #57606a;
+            border-radius: 8px;
+            padding: 15px;
             text-align: center;
+            text-decoration: none;
+            color: #24292f;
+            transition: 0.2s;
         }
 
-        footer {
-            margin-top: auto;
-            padding: 20px;
-            font-size: 0.8rem;
-            color: #57606a;
-        }
+        .card:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .icon { font-size: 40px; display: block; margin-bottom: 10px; }
+        .title { font-weight: bold; font-size: 1.1rem; }
+        .desc { font-size: 0.85rem; color: #57606a; margin-top: 8px; }
+        
+        /* 加载状态动画 */
+        .loading { grid-column: 1/-1; text-align: center; color: #666; padding: 50px; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>🎮 我的游戏仓库</h1>
-    <p>点击下方卡片开始游玩</p>
+    <h1>🎮 游戏实验室</h1>
+    <p>从 JSON 自动加载的游戏清单</p>
 </header>
 
-<main class="container">
-    <a href="game/game1.html" class="game-card">
-        <div class="game-icon">🚀</div>
-        <div class="game-title">星际航行</div>
-        <div class="game-desc">躲避障碍物，飞向宇宙深处。</div>
-    </a>
+<div id="game-container">
+    <div class="loading">正在加载游戏列表...</div>
+</div>
 
-    <a href="game/snake.html" class="game-card">
-        <div class="game-icon">🐍</div>
-        <div class="game-title">贪吃蛇</div>
-        <div class="game-desc">经典的童年回忆，挑战最高分。</div>
-    </a>
+<script>
+    async function loadGames() {
+        const container = document.getElementById('game-container');
+        try {
+            // 获取 JSON 数据
+            const response = await fetch('./games.json');
+            if (!response.ok) throw new Error('无法加载游戏清单');
+            
+            const games = await response.json();
+            
+            // 清空加载提示
+            container.innerHTML = '';
 
-    <a href="game/tetris.html" class="game-card">
-        <div class="game-icon">🧱</div>
-        <div class="game-title">俄罗斯方块</div>
-        <div class="game-desc">消除压力，指尖快感。</div>
-    </a>
+            // 循环生成 HTML
+            games.forEach(game => {
+                const card = document.createElement('a');
+                card.href = game.path;
+                card.className = 'card';
+                card.innerHTML = `
+                    <span class="icon">${game.icon}</span>
+                    <div class="title">${game.title}</div>
+                    <div class="desc">${game.desc}</div>
+                `;
+                container.appendChild(card);
+            });
+        } catch (error) {
+            container.innerHTML = `<div class="loading">加载失败: ${error.message}</div>`;
+        }
+    }
 
-    </main>
-
-<footer>
-    <p>Powered by GitHub Pages | © 2024 YourName</p>
-</footer>
+    // 页面加载后运行
+    loadGames();
+</script>
 
 </body>
 </html>
