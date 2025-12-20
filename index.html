@@ -1,10 +1,116 @@
 <!DOCTYPE html>
-<html>
-    <title>PAGE ENTER</title>
-    <head></head>
-    <body>
-        <div>
-            <button onclick="window.location.href='unity1.html'">Unity测试</button>
-        </div>
-    </body>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的游戏合集 - GitHub Pages</title>
+    <style>
+        :root {
+            --primary-color: #2da44e; /* GitHub 风格绿色 */
+            --bg-color: #f6f8fa;
+            --card-bg: #ffffff;
+            --text-color: #24292f;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        header {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 90%;
+            max-width: 1000px;
+        }
+
+        .game-card {
+            background: var(--card-bg);
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 20px;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(140,149,159,0.2);
+            border-color: var(--primary-color);
+        }
+
+        .game-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .game-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .game-desc {
+            font-size: 0.9rem;
+            color: #57606a;
+            text-align: center;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 20px;
+            font-size: 0.8rem;
+            color: #57606a;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🎮 我的游戏仓库</h1>
+    <p>点击下方卡片开始游玩</p>
+</header>
+
+<main class="container">
+    <a href="game/game1.html" class="game-card">
+        <div class="game-icon">🚀</div>
+        <div class="game-title">星际航行</div>
+        <div class="game-desc">躲避障碍物，飞向宇宙深处。</div>
+    </a>
+
+    <a href="game/snake.html" class="game-card">
+        <div class="game-icon">🐍</div>
+        <div class="game-title">贪吃蛇</div>
+        <div class="game-desc">经典的童年回忆，挑战最高分。</div>
+    </a>
+
+    <a href="game/tetris.html" class="game-card">
+        <div class="game-icon">🧱</div>
+        <div class="game-title">俄罗斯方块</div>
+        <div class="game-desc">消除压力，指尖快感。</div>
+    </a>
+
+    </main>
+
+<footer>
+    <p>Powered by GitHub Pages | © 2024 YourName</p>
+</footer>
+
+</body>
 </html>
