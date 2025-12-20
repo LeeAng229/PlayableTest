@@ -1,0 +1,23 @@
+name: Auto Update Games List
+on:
+  push:
+    paths:
+      - 'game/**' # 只有当 game 文件夹里的内容变化时才触发
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Run script
+        run: python update_games.py
+      - name: Commit and push if changed
+        run: |
+          git config --global user.name "kiki"
+          git config --global user.email "2429175659@qq.com"
+          git add games.json
+          git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update games.json"
+          git push
