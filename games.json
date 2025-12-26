@@ -18,12 +18,6 @@
         "desc": "这是关于 Index 的小游戏。"
     },
     {
-        "title": "俄罗斯透明划词",
-        "path": "game/俄罗斯透明划词.html",
-        "icon": "🎮",
-        "desc": "这是关于 俄罗斯透明划词 的小游戏。"
-    },
-    {
         "title": "Unity1",
         "path": "game/unity1.html",
         "icon": "🎮",
@@ -52,5 +46,11 @@
         "path": "game/unity2.html",
         "icon": "🎮",
         "desc": "这是关于 Unity2 的小游戏。"
+    },
+    {
+        "title": "Touming ru",
+        "path": "game/touming_ru.html",
+        "icon": "🎮",
+        "desc": "这是关于 Touming ru 的小游戏。"
     }
 ]
