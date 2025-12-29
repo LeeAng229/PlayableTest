@@ -52,5 +52,11 @@
         "path": "game/touming_ru.html",
         "icon": "🎮",
         "desc": "这是关于 Touming ru 的小游戏。"
+    },
+    {
+        "title": "Jiaotang ru",
+        "path": "game/jiaotang_ru.html",
+        "icon": "🎮",
+        "desc": "这是关于 Jiaotang ru 的小游戏。"
     }
 ]
