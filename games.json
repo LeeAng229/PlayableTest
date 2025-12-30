@@ -48,6 +48,12 @@
         "desc": "这是关于 Unity2 的小游戏。"
     },
     {
+        "title": "8575 广州",
+        "path": "game/8575_广州.html",
+        "icon": "🎮",
+        "desc": "这是关于 8575 广州 的小游戏。"
+    },
+    {
         "title": "Touming ru",
         "path": "game/touming_ru.html",
         "icon": "🎮",
